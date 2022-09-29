@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { UserProvider } from "./context/userDetails";
+import SetUserDetails from "./routes/SetUserDetails";
+import FetchUserDetails from "./routes/FetchUserDetails";
+
+// Route that goes to let us assign a user.
+// When we click the button that assigns the user
+// Go to user's start page.
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <SetUserDetails />,
+  },
+  { path: "/user", element: <FetchUserDetails /> },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   );
 }
 
