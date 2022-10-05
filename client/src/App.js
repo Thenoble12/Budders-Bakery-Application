@@ -13,6 +13,7 @@ const router = createBrowserRouter([
     element: <SetUserDetails />,
   },
   { path: "/user", element: <FetchUserDetails /> },
+  { path: "/user/menu", element: <Home/> }
 ]);
 
 function App() {
