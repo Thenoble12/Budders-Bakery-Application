@@ -1,20 +1,30 @@
 import React from 'react'
-//import { useHistory } from 'react-router';
-import './CartCountButton'
+import './CartCountButton.css'
+import { connect } from 'react-redux'
+import { useNavigate } from 'react-router';
+import { createStructuredSelector } from 'reselect';
+import { selectCartItemsCount } from '../../../redux/cart/cart.selector';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 function CartCountButton({ cartCount }) {
-  //const history = useHistory();  
+  const navigate = useNavigate();  
   return (
-    <div>
-      
-        <div className='btnCartCount' /*onClick={() => history.push('/cart')}*/>
+    <div>      
+        <div className='btnCartCount' onClick={() => navigate('/user/cart')}>
             <div className='count'>
                 {cartCount >= 100 ? '99+' : cartCount}
             </div>
-            <i className='fas fa-shopping-cart'></i>
+            <div className='icon'>
+              <FontAwesomeIcon icon={faShoppingCart} aria-hidden='true'/> 
+            </div>
         </div>
     </div>
   )
 }
 
-export default CartCountButton
+const mapStateToProps = createStructuredSelector({
+  cartCount: selectCartItemsCount,
+});
+
+export default connect(mapStateToProps)(CartCountButton);

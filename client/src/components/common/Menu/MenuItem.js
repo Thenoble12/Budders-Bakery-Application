@@ -1,38 +1,40 @@
 import React from "react";
+import { selectCartTotal } from "../../../redux/cart/cart.selector";
 
-// import { connect } from "react-redux";
-// import { createStructuredSelector } from "reselect";
-// import {
-//   cartAddItem,
-//   cartRemoveItem,
-// } from "../../../../redux/cart/cart.action";
-// import {
-//   selectCartItems,
-//   selectCartItemsCount,
-// } from "../../../../redux/cart/cart.selector";
-// import ButtonAddRemoveItem from "../../ButtonAddRemoveItem";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import {
+  cartAddItem,
+  cartRemoveItem,
+} from "../../../redux/cart/cart.action";
+import {
+  selectCartItems,
+  selectCartItemsCount,
+} from "../../../redux/cart/cart.selector";
+import AddRemoveItemButton from "../AddRemoveItemButton/AddRemoveItemButton";
 
-import "./menuItem.css";
+import "./MenuItem.css";
 
 
 function MenuItem({ item, cartCount, cartList, cartAddItem, cartRemoveItem }) {
 
   const { id, name, price, vegan, description, image_url } = item;
 
-  // const handleQuantity = () => {
-  //   let quantity = 0;
-  //   if (cartCount !== 0) {
-  //     const foundItemInCart = cartList.find((item) => item.id === id);
-  //     if (foundItemInCart) {
-  //       quantity = foundItemInCart.quantity;
-  //     }
-  //   }
-  //   return quantity;
-  // };
+  const handleItemQuantity = () => {
+    let quantity = 0;
+    if (cartCount !== 0) {
+        const foundItemInCart = cartList.find((item) => item.id === id);
+        
+        if (foundItemInCart) {
+          quantity = foundItemInCart.quantity;
+        }
+    }
+    return quantity;
+  };
 
   return (
     <div className="item">
-      <img src={image_url} alt="food" />
+      <img src={image_url} alt="item" />
       <div className="item-head_desc">
         <p className="head_desc-name">{name}</p>
         <p className="head_desc-info">
@@ -41,25 +43,22 @@ function MenuItem({ item, cartCount, cartList, cartAddItem, cartRemoveItem }) {
       </div>
       <div className="item-foot_desc">
         <span className="foot_desc-price">${price}</span>
-        {/* <ButtonAddRemoveItem
-          quantity={handleQuantity()}
-          handleRemoveItem={() => cartRemoveItem(item)}
-          handleAddItem={() => cartAddItem(item)}
-        /> */}
+        <AddRemoveItemButton quantity={handleItemQuantity()} 
+                             handleAddItem={() => cartAddItem(item)} 
+                             handleRemoveItem={() => cartRemoveItem(item)} />                                     
       </div>
     </div>
   );
  }
 
-// const mapStateToProps = createStructuredSelector({
-//   cartCount: selectCartItemsCount,
-//   cartList: selectCartItems,
-// });
+const mapStateToProps = createStructuredSelector({
+  cartCount: selectCartItemsCount,
+  cartList: selectCartItems
+});
 
-// const mapDispatchToProps = (dispatch) => ({
-//   cartAddItem: (item) => dispatch(cartAddItem(item)),
-//   cartRemoveItem: (item) => dispatch(cartRemoveItem(item)),
-// });
+const mapDispatchToProps = (dispatch) => ({
+  cartAddItem: (item) => dispatch(cartAddItem(item)),
+  cartRemoveItem: (item) => dispatch(cartRemoveItem(item)),
+});
 
-// export default connect(mapStateToProps, mapDispatchToProps)(MenuItem);
-export default MenuItem;
+export default connect(mapStateToProps, mapDispatchToProps)(MenuItem);

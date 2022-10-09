@@ -29,6 +29,6 @@
     align-items: center;
     font-weight: 500;
   }
-  .btnCartCount i {
+  .btnCartCount .icon {
     transform: rotate(-45deg);
   }
