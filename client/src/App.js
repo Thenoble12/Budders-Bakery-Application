@@ -5,6 +5,7 @@ import FetchUserDetails from "./routes/FetchUserDetails";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import './App.css';
+import Register from "./pages/Register/Register";
 
 
 // Route that goes to let us assign a user.
@@ -16,7 +17,8 @@ const router = createBrowserRouter([
   //{ path: "/user", element: <Home /> }//,
   { path: "/user", element: <FetchUserDetails /> },
   { path: "/user/menu", element: <Home /> },
-  { path: "/user/cart", element: <Cart /> }
+  { path: "/user/cart", element: <Cart /> },
+  { path: "/user/register", element: <Register /> }
 ]);
 
 function App() {

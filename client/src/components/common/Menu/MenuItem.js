@@ -1,5 +1,5 @@
 import React from "react";
-import { selectCartTotal } from "../../../redux/cart/cart.selector";
+//import { selectCartTotal } from "../../../redux/cart/cart.selector";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
