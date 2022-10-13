@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email, :password_digest
+  attributes :id, :first_name, :last_name, :email, :username, :password_digest
 
   def show
     self.id
