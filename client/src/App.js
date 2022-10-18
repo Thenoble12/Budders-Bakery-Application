@@ -9,6 +9,7 @@ import "./App.css";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import { useSelector } from "react-redux";
+
 import Navbar from "./components/Navbar/Navbar";
 import Product from "./pages/Products/Product";
 
