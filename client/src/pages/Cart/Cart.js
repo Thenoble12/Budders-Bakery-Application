@@ -5,6 +5,7 @@ import EmptyCart from '../../components/Cart/EmptyCart'
 import Footer from '../../components/common/Footer/Footer'
 import Logo from '../../components/common/Logo/Logo'
 import MenuCart from '../../components/common/Menu/MenuCart'
+import Navbar from '../../components/Navbar/Navbar';
 import {
   selectCartItems,
   selectCartItemsCount,
@@ -17,11 +18,13 @@ function Cart({ cartCount, cartList, cartTotal }) {
   //const [ menuItemsData, setmenuItemsData ] = useState([])
 
   return (
-    <div>
+    <div>       
         <div className='cart-header'>
-          <Logo />
+          <Navbar />  
+          {/* <Logo /> */}
         </div>
         { cartCount === 0 ? (
+          
           <EmptyCart />
         ) : (
           <div className='orders'>

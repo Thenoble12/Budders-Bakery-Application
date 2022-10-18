@@ -24,10 +24,10 @@ import { useEffect } from 'react'
 
 function MenuData({ dataFetch }) {
     
-    const URL = "/products"      
+    // const URL = "/products"      
   
     useEffect(() => {
-      fetch(`${URL}`)               
+      fetch(`/products`)               
           .then((r) => r.json())
           .then((menuItems) => {dataFetch(menuItems)
                                   console.log(menuItems)

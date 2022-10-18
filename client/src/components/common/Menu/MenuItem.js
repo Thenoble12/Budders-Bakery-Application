@@ -2,11 +2,15 @@ import React from "react";
 //import { selectCartTotal } from "../../../redux/cart/cart.selector";
 
 import { connect } from "react-redux";
+import { useNavigate } from 'react-router';
 import { createStructuredSelector } from "reselect";
+import Product from '../../../pages/Products/Product'
 import {
   cartAddItem,
   cartRemoveItem,
 } from "../../../redux/cart/cart.action";
+import { productSetItem } from "../../../redux/product/product.action"
+import { selectProductItem } from '../../../redux/product/product.selector'
 import {
   selectCartItems,
   selectCartItemsCount,
@@ -16,7 +20,8 @@ import AddRemoveItemButton from "../AddRemoveItemButton/AddRemoveItemButton";
 import "./MenuItem.css";
 
 
-function MenuItem({ item, cartCount, cartList, cartAddItem, cartRemoveItem }) {
+function MenuItem({ item, cartCount, cartList, cartAddItem, cartRemoveItem, productSetItem }) {
+  const navigate = useNavigate();  
 
   const { id, name, price, vegan, description, image_url } = item;
 
@@ -32,14 +37,19 @@ function MenuItem({ item, cartCount, cartList, cartAddItem, cartRemoveItem }) {
     return quantity;
   };
 
+
   return (
     <div className="item">
-      <img src={image_url} alt="item" />
+      <img src={image_url} alt="item" onClick={()=>{
+         productSetItem(item);
+         navigate('/product');        
+      }} />
       <div className="item-head_desc">
         <p className="head_desc-name">{name}</p>
-        <p className="head_desc-info">
+        {/* <p className="head_desc-info">
           <small>{description}</small>
-        </p>
+        </p> */}
+        <button>Details</button>
       </div>
       <div className="item-foot_desc">
         <span className="foot_desc-price">${price}</span>
@@ -53,12 +63,14 @@ function MenuItem({ item, cartCount, cartList, cartAddItem, cartRemoveItem }) {
 
 const mapStateToProps = createStructuredSelector({
   cartCount: selectCartItemsCount,
-  cartList: selectCartItems
+  cartList: selectCartItems,
+  currentProduct: selectProductItem,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   cartAddItem: (item) => dispatch(cartAddItem(item)),
   cartRemoveItem: (item) => dispatch(cartRemoveItem(item)),
+  productSetItem: (item) => dispatch(productSetItem(item)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuItem);

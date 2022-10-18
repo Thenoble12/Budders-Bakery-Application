@@ -1,5 +1,4 @@
 import React from 'react'
-import Logo from '../../common/Logo/Logo'
 import bannerImg from './budders_banner.png'
 import './Banner2.css';
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons'
@@ -10,7 +9,7 @@ function Banner({ handleMenuScroll }) {
   return (
     <header>
         <div className='header-content'>
-            <Logo />
+           
             <div className='content-main'>  
                 <h1>The best cookie you never had</h1>   
                 <p>Made fresh using asian infused recipes with real natural ingredients.</p>

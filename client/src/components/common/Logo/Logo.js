@@ -6,10 +6,7 @@ function Logo() {
   return (
     <div className='header-content_logo'>
         <div>
-            <img src={logo} alt='logo' />
-            <span>
-                <b>Taste</b>
-            </span>
+            <img src={logo} alt='logo' />            
         </div>
         <p>
             <b>Budder’s Bakery</b>

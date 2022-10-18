@@ -11,7 +11,7 @@ function CartCountButton({ cartCount }) {
   const navigate = useNavigate();  
   return (
     <div>      
-        <div className='btnCartCount' onClick={() => navigate('/user/cart')}>
+        <div className='btnCartCount' onClick={() => navigate('/cart')}>
             <div className='count'>
                 {cartCount >= 100 ? '99+' : cartCount}
             </div>

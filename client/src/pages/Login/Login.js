@@ -6,61 +6,48 @@ import Typography from "@mui/joy/Typography";
 import TextField from "@mui/joy/TextField";
 import Button from "@mui/joy/Button";
 import Link from "@mui/joy/Link";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/userSlice";
 
-function Login({ activeAccount }) {
-  const [activeAccounts, setActiveAccounts] = useState([]);
+function Login({activeAccount, setActiveAccount}) {  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const dispatch = useDispatch();
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+  
+//     fetch(`/sessions`);
+//   };
+
+  function handleSubmit(e) {
     e.preventDefault();
-    const user = activeAccounts.find(
-      (account) =>
-        account.username === username && account.password === password
+
+    dispatch(
+      login({      
+        username: username,
+        password: password,
+      })
     );
 
-    if (user) {
-      activeAccount(user);
-      navigate("/home");
-    } else {
-      alert("Username or Password is Incorrect!!!");
-    }
-  };
-
-  function handleErrors(response) {
-    if (!response.ok) throw new Error(response.status);
-    return response;
+    fetch("/sessions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => setActiveAccount([...data]));
   }
 
-  useEffect(() => {
-    fetch(`http://localhost:3000/users/`)
-      .then(handleErrors)
-      .then((resp) => resp.json())
-      .then((data) => setActiveAccounts([...data]));
-  }, []);
 
   return (
-    // <div>
-    //     <h2>Login</h2>
-    //     <form onSubmit={(e)=>{handleSubmit(e)}}>
-    //         <div className="input-container">
-    //             <label>Username </label>
-    //             <input onChange={(e)=>setUsername(e.target.value)} type="text" name="username" required />
-    //         </div>
-    //         <div className="input-container">
-    //             <label>Password </label>
-    //             <input onChange={(e)=>setPassword(e.target.value)}type="password" name="password" required />
-    //         </div>
-    //         <div className="button-container">
-    //             <button type="submit" className="btn">Login</button>
-    //         </div>
-    //         <div className="link-container">
-    //             <Link to="/register">Need an Account?</Link>
-    //         </div>
-    //     </form>
-    // </div>
-
     <CssVarsProvider>
       <main>
         <Sheet
@@ -91,16 +78,24 @@ function Login({ activeAccount }) {
             placeholder="johndoe@email.com"
             // pass down to FormLabel as children
             label="Email"
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             name="password"
             type="password"
             placeholder="password"
             label="Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <Button sx={{ mt: 1 /* margin top */ }}>Log in</Button>
+          <Button
+            type="submit"
+            onClick={(e) => handleSubmit(e)}
+            sx={{ mt: 1 /* margin top */ }}
+          >
+            Log in
+          </Button>
           <Typography
-            endDecorator={<Link href="/sign-up">Sign up</Link>}
+            endDecorator={<Link href="/signup">Sign up</Link>}
             fontSize="sm"
             sx={{ alignSelf: "center" }}
           >

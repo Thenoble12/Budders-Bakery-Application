@@ -4,4 +4,5 @@ class User < ApplicationRecord
     has_many :orders
     has_many :user_products
     has_many :order_products, through: :orders
+    has_secure_password
 end
