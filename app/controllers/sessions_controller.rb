@@ -1,26 +1,11 @@
 class SessionsController < ApplicationController
-include CurrentUserConcern
 
-  def logged_in
-    if @current_user
-      render json: {
-        logged_in: true,
-        user: @current_user
-      }
-    else
-      render json: {
-        logged_in: false
-      }
-    end
-  end
-  
   def create
     user = User.find_by(username: params[:username]) 
         # || User.find_by(email: params[:session][:email].downcase)
     
     if user && user&.authenticate(params[:password])
-      session[:user_id] = user.id
-      # params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+      session[:user_id] = user.id      
       render json: user, status: :created      
     else
       render json: { errors: ["Invalid username or password"] },
@@ -30,7 +15,8 @@ include CurrentUserConcern
   end
 
   def logout
-    reset_session
+    session.delete :user_id
+    head :no_content
     render json: { status: 200, logged_out: true }
   end
 

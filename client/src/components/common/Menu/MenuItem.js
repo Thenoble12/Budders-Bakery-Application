@@ -20,7 +20,7 @@ import AddRemoveItemButton from "../AddRemoveItemButton/AddRemoveItemButton";
 import "./MenuItem.css";
 
 
-function MenuItem({ item, cartCount, cartList, cartAddItem, cartRemoveItem, productSetItem }) {
+function MenuItem({ item, cartCount, cartList, cartAddItem, cartRemoveItem, productSetItem, setItem }) {
   const navigate = useNavigate();  
 
   const { id, name, price, vegan, description, image_url } = item;
@@ -41,7 +41,7 @@ function MenuItem({ item, cartCount, cartList, cartAddItem, cartRemoveItem, prod
   return (
     <div className="item">
       <img src={image_url} alt="item" onClick={()=>{
-         productSetItem(item);
+         setItem(item);
          navigate('/product');        
       }} />
       <div className="item-head_desc">

@@ -6,6 +6,6 @@ class UserProductSerializer < ActiveModel::Serializer
     self.product_id
     self.user_id
     self.quantity
-  end
+  end  
 
 end

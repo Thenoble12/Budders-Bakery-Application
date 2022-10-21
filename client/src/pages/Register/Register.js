@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { CssVarsProvider, useColorScheme } from "@mui/joy/styles";
-import Box from "@mui/material/Box";
+import { useNavigate } from "react-router-dom";
 import Sheet from "@mui/joy/Sheet";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/joy/Typography";
-import Stack from "@mui/joy/Stack";
-import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/joy/Button";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
 import Link from "@mui/joy/Link";
+import './Register.css'
+import HandleError from "../../HandleError";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
-//import { Link } from "react-router-dom";
-//import "./register.css"
 
 function Register() {
+  const navigate = useNavigate();  
+
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
@@ -90,6 +90,19 @@ function Register() {
     setConfirmed("");
   };
 
+  //   const handleErrors = (error) => {
+  //    return (
+  //       <div>
+  //       <Stack sx={{ width: '100%' }} spacing={2}>
+  //           <Alert severity="error">
+  //               <AlertTitle>Error</AlertTitle>
+  //               This is an error alert — <strong>{error}</strong>
+  //           </Alert>
+  //       </Stack>
+  //     </div>
+  //    )
+  // }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(valid);
@@ -114,14 +127,18 @@ function Register() {
         .then((data) => {
           alert("Account has been sucessfully created!!!");
           resetForm();
-          Navigate("/login");
-        });
+          navigate("/login");
+        })
+        .catch((error) => {
+          console.error(error)
+    });
     }
   };
 
   return (
-      <main>
+    <main className="form">
         <Sheet
+            component="form"
             sx={{
               width: 300,
               mx: "auto", // margin left & right
@@ -136,7 +153,7 @@ function Register() {
             }}
             variant="outlined"
           >
-          {/* <h2>Register</h2> */}
+          <h2>Register</h2>
           {/* <Box
             component="form"
             sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
@@ -214,7 +231,7 @@ function Register() {
               size="md"
               color="primary"
               onClick={(e) => handleSubmit(e)}
-              sx={{ mt: 1 /* margin top */ }}
+              sx={{ mt: 1 /* margin top */, color: '#1976d2'}}
             >
               Submit
             </Button>

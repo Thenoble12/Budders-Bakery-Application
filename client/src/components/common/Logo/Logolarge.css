@@ -1,0 +1,30 @@
+@media (min-width: 768px) {
+    .header-content_logo_lg {
+        min-width: fit-content;
+    }
+    
+    .header-content_logo_lg img {
+        width: 7.0rem;
+        margin-right: 0.5rem;
+    }
+    
+    .header-content_logo_lg > div {
+        display: flex;
+        align-items: center;
+    }
+    
+    .header-content_logo_lg > p {
+        font-size: 1rem;
+    }
+    
+    .content-logo_lg img {
+        width: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content_logo_lg {
+        display: none
+    }
+}
+

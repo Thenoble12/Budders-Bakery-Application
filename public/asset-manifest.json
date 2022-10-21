@@ -1,20 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/static/js/main.57a50cc5.chunk.js",
-    "main.js.map": "/static/js/main.57a50cc5.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.91366a4d.js",
-    "runtime-main.js.map": "/static/js/runtime-main.91366a4d.js.map",
-    "static/js/2.dc27bc76.chunk.js": "/static/js/2.dc27bc76.chunk.js",
-    "static/js/2.dc27bc76.chunk.js.map": "/static/js/2.dc27bc76.chunk.js.map",
+    "main.css": "/static/css/main.f7fc787d.css",
+    "main.js": "/static/js/main.cb51c26e.js",
+    "static/media/budders_banner.png": "/static/media/budders_banner.fcac622399e5f29f14fc.png",
+    "static/media/RainbowBear.png": "/static/media/RainbowBear.8554a5dea72b664299a7.png",
+    "static/media/BudderTheBear.png": "/static/media/BudderTheBear.7e4a8b9f58f3e35bdd6e.png",
     "index.html": "/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.dc27bc76.chunk.js.LICENSE.txt": "/static/js/2.dc27bc76.chunk.js.LICENSE.txt"
+    "main.f7fc787d.css.map": "/static/css/main.f7fc787d.css.map",
+    "main.cb51c26e.js.map": "/static/js/main.cb51c26e.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.91366a4d.js",
-    "static/js/2.dc27bc76.chunk.js",
-    "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.57a50cc5.chunk.js"
+    "static/css/main.f7fc787d.css",
+    "static/js/main.cb51c26e.js"
   ]
 }

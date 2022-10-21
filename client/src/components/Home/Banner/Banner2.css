@@ -1,16 +1,19 @@
 header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0.5rem 0 0 0;
-    height: 100vh;
+    
   }
   .header-img {
     width: 100%;
     align-self: center;
+    object-position: center top ;
+        
   }
   .header-content {
     display: flex;
     flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0.5rem 0 0 0;
+    height: 100vh;
   }
   
   .content-main {

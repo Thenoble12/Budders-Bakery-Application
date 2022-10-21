@@ -1,34 +1,47 @@
-import React from 'react';
-import { createStructuredSelector } from 'reselect';
-import Navbar from '../../components/Navbar/Navbar';
-// import Link from 'next/link';
-import { selectProductItem } from '../../redux/product/product.selector';
-// import { urlFor } from '../lib/client';
+import * as React from 'react';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import ProductCard from './ProductCard';
 
-function Product({ itemData }){
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+  height: 60,
+  lineHeight: '60px',
+}));
 
-    const { id, name, price, vegan, description, image_url } = itemData;
+const darkTheme = createTheme({ palette: { mode: 'dark' } });
+const lightTheme = createTheme({ palette: { mode: 'light' } });
 
+function Product({ itemData }) {
   return (
-    <div>
-        <Navbar />   
-        <div className="product-card">
-          <img 
-            src={image_url}
-            width={250}
-            height={250}
-            className="product-image"
-          />
-          <p className="product-name">{name}</p>
-          <p className="product-price">${price}</p>
-        </div>
-        <p>{description}</p>
-    </div>
-  )
+    <Grid container spacing={2}>
+      {[lightTheme, darkTheme].map((theme, index) => (
+        <Grid item xs={6} key={index}>
+          <ThemeProvider theme={theme}>
+            <Box
+              sx={{
+                p: 2,
+                bgcolor: 'background.default',
+                display: 'grid',
+                gridTemplateColumns: { md: '1fr 1fr' },
+                gap: 2,
+              }}
+            >
+              {/* {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24].map((elevation) => ( */}
+                <Item elevation={10}>
+                  <ProductCard itemData={itemData} />
+                </Item>
+              {/* ))} */}
+            </Box>
+          </ThemeProvider>
+        </Grid>
+      ))}
+    </Grid>
+  );
 }
-
-const mapStateToProps = createStructuredSelector({
-  itemData: selectProductItem
-});
 
 export default Product

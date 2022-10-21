@@ -6,12 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 const EmptyCart = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className='emptyCart'>
       <img src={emptyCartImg} alt='' />         
-      <button onClick={() => history.push('/')}>
+      <button onClick={() => navigate('/')}>
         {/* <i className='fas fa-long-arrow-alt-left'></i> Shop Now */}
         <FontAwesomeIcon icon={faLongArrowLeft} /> Shop Now
       </button>

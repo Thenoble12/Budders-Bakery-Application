@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import EmptyCart from '../../components/Cart/EmptyCart'
 import Footer from '../../components/common/Footer/Footer'
-import Logo from '../../components/common/Logo/Logo'
+import Logo from '../../components/common/Logo/Logolarge'
 import MenuCart from '../../components/common/Menu/MenuCart'
 import Navbar from '../../components/Navbar/Navbar';
 import {
@@ -20,11 +20,9 @@ function Cart({ cartCount, cartList, cartTotal }) {
   return (
     <div>       
         <div className='cart-header'>
-          <Navbar />  
           {/* <Logo /> */}
         </div>
-        { cartCount === 0 ? (
-          
+        { cartCount === 0 ? (          
           <EmptyCart />
         ) : (
           <div className='orders'>
@@ -35,7 +33,7 @@ function Cart({ cartCount, cartList, cartTotal }) {
             <h3 className='orders-total'>Your Total ${cartTotal}</h3>
         </div>
         )}
-        <Footer />
+        
     </div>
   )
 }

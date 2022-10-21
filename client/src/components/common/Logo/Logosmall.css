@@ -1,0 +1,29 @@
+@media (max-width: 768px) {
+    .header-content_logo_sm {
+        min-width: fit-content;
+    }
+    
+    .header-content_logo_sm img {
+        width: 7.0rem;
+        margin-right: 0.5rem;
+    }
+    
+    .header-content_logo_sm > div {
+        display: flex;
+        align-items: center;
+    }
+    
+    .header-content_logo_sm > p {
+        font-size: 1rem;
+    }
+    
+    .content-logo_sm img {
+        width: 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .header-content_logo_sm {
+        display: none
+    }
+}

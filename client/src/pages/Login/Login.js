@@ -8,19 +8,15 @@ import Button from "@mui/joy/Button";
 import Link from "@mui/joy/Link";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/userSlice";
+import './Login.css'
+import HandleError from "../../HandleError";
 
-function Login({activeAccount, setActiveAccount}) {  
+function Login({ onLogin }) {  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();  
   const dispatch = useDispatch();
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-  
-//     fetch(`/sessions`);
-//   };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -32,7 +28,7 @@ function Login({activeAccount, setActiveAccount}) {
       })
     );
 
-    fetch("/sessions", {
+    fetch("/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,13 +39,19 @@ function Login({activeAccount, setActiveAccount}) {
       }),
     })
       .then((resp) => resp.json())
-      .then((data) => setActiveAccount([...data]));
+      .then((data) => {
+        navigate('/')
+        onLogin(data)
+      })
+      .catch((error) => {
+        <HandleError error={error}/>
+    });
   }
 
 
   return (
     <CssVarsProvider>
-      <main>
+      <main className="form">
         <Sheet
           sx={{
             width: 300,
@@ -72,11 +74,9 @@ function Login({activeAccount, setActiveAccount}) {
             <Typography level="body2">Sign in to continue.</Typography>
           </div>
           <TextField
-            // html input attribute
             name="email"
             type="email"
             placeholder="johndoe@email.com"
-            // pass down to FormLabel as children
             label="Email"
             onChange={(e) => setUsername(e.target.value)}
           />

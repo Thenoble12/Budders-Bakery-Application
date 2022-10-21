@@ -8,7 +8,7 @@ import Register from '../Register/Register'
 
 import './Home.css'
 
-function Home() {
+function Home({ setProduct }) {
   const menuRef = useRef();  
 
   const [ menuItemsData, setmenuItemsData ] = useState([])    
@@ -19,11 +19,8 @@ function Home() {
 
   return (
     <div>   
-        <Navbar />   
         <Banner handleMenuScroll={handleMenuScroll} />
-        <Menu setMenuItems={setmenuItemsData} menuItems={menuItemsData} />
-        <Footer />
-        <CartCountButton />        
+        <Menu setMenuItems={setmenuItemsData} menuItems={menuItemsData} setProduct={setProduct} />                      
     </div>
   )
 }

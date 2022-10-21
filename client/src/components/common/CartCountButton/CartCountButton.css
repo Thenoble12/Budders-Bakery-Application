@@ -1,6 +1,6 @@
 .btnCartCount {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background: #000;
     color: #fff;
     border-radius: 15px;
@@ -9,16 +9,16 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 1.5rem;
+    top: .89rem;
     cursor: pointer;
-    right: 1rem;
+    right: 5rem;
   }
   
   .btnCartCount .count {
     position: absolute;
     background: red;
-    top: -8px;
-    left: -9px;
+    top: 30px;
+    left: -11px;
     transform: rotate(-45deg);
     border-radius: 50%;
     width: 20px;

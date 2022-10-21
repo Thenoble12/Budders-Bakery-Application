@@ -10,6 +10,7 @@ export const addItemToCart = ( cartItems, cartAddItem ) => {
                 : cartItem );        
     }
 
+    //POST - UPDATE CART
     return [...cartItems, {...cartAddItem, quantity: 1 }]
 };
 
