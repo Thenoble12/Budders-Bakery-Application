@@ -118,10 +118,7 @@ function Account({ userAccount, onLogout }) {
             resetForm();
             navigate("/");
          }                
-      })
-      .catch((error) => {
-            <HandleError error={error}/>
-      });
+      })      
   }
 
 //   const handleErrors = (error) => {

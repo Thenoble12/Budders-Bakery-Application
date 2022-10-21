@@ -21,7 +21,6 @@ import CartCountButton from '../common/CartCountButton/CartCountButton';
 
 
 
-
 function Navbar2({ onLogout, user }) {
   const navigate = useNavigate()
 
@@ -52,9 +51,7 @@ function Navbar2({ onLogout, user }) {
     }).then(() => onLogout(null));
   }   
  
-  const handlePageSelect = (page) => {
-    console.log("PAAAAAAAAAAAAGE0:" + page)
-     
+  const handlePageSelect = (page) => {     
 
     switch(page) {
       case "Menu":
@@ -198,7 +195,7 @@ function Navbar2({ onLogout, user }) {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} >
-                  <Typography onClick={()=>handlePageSelect(setting)} textAlign="center">{setting}</Typography>
+                  <Typography onClick={()=>{handlePageSelect(setting)}} textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
