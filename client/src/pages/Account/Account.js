@@ -90,12 +90,6 @@ function Account({ userAccount, onLogout }) {
     setValid(result);
   };
 
-//   useEffect(() => {
-//     fetch(`/users`)
-//       .then((resp) => resp.json())
-//       .then((data) => setUserId(data.length));
-//   }, []);
-
   const resetForm = () => {
     setFirstName("");
     setLastName("");
