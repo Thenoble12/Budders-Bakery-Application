@@ -1,5 +1,12 @@
 #!/usr/bin/env ruby
+begin
+    require 'minitest/autorun'
+  rescue LoadError => e
+    raise e unless ENV['RAILS_ENV'] == "production"
+end
+
 load File.expand_path("spring", __dir__)
 APP_PATH = File.expand_path('../config/application', __dir__)
 require_relative "../config/boot"
 require "rails/commands"
+
