@@ -1,4 +1,16 @@
 class ProductsController < ApplicationController
+    
+    # def get_products
+    #     database_id = "appapkdL0r8Y1J8s1"
+    #     database_table = "Menu From Square"
+    #     url = "https://api.airtable.com/v0/#{database_id}/#{database_table}?api_key=#{database_api_key}"
+
+    #     response = RestClent.get(url)
+    #     puts response
+    #     Product.create(render json: response)
+    # end
+    
+
     def index
         products = Product.all
         render json: products
@@ -44,4 +56,8 @@ class ProductsController < ApplicationController
     def product_params
         params.permit(:name, :price, :vegan, :product_type, :description, :image_url)
     end
+
+    # def database_api_key
+    #     key="key1uUIxN4hB8Nc76"
+    # end
 end

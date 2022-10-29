@@ -15,7 +15,6 @@ import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import { connect } from "react-redux";
 import { useNavigate } from 'react-router';
 import { createStructuredSelector } from "reselect";
-import Product from '../../../pages/Products/Product'
 import {
   cartAddItem,
   cartRemoveItem,
@@ -29,36 +28,27 @@ import {
 import AddRemoveItemButton from "../AddRemoveItemButton/AddRemoveItemButton";
 
 import "./MenuItem.css";
+import MenuModal from "./MenuModal";
 
 function MenuItem2({ item, cartCount, cartList, cartAddItem, cartRemoveItem, productSetItem, setItem  }) {
   const navigate = useNavigate(); 
   
   const { id, name, price, vegan, description, image_url } = item;
 
-  const handleItemQuantity = () => {
-    let quantity = 0;
-    if (cartCount !== 0) {
-        const foundItemInCart = cartList.find((item) => item.id === id);
-        
-        if (foundItemInCart) {
-          quantity = foundItemInCart.quantity;
-        }
-    }
-    return quantity;
-  };
-  
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);  
+
   return (
-    <Card sx={{ minHeight: '250px', width: 210 }}>
+    <Card sx={{ minHeight: '250px', width: 210 }}
+          onClick={handleOpen}>
+            <MenuModal item={item} open={open} handleClose={handleClose} cartCount={cartCount} cartList={cartList} cartAddItem={cartAddItem} cartRemoveItem={cartRemoveItem}  />
       <CardCover>
         <img
           src={image_url}
           // srcSet="https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320&dpr=2 2x"
           loading="lazy"
-          alt=""
-          onClick={()=>{
-            setItem(item);
-            navigate('/product');        
-          }} 
+          alt=""          
         />
       </CardCover>
       <CardCover
@@ -79,9 +69,7 @@ function MenuItem2({ item, cartCount, cartList, cartAddItem, cartRemoveItem, pro
         >
           {price}
         </Typography>
-        <AddRemoveItemButton quantity={handleItemQuantity()} 
-                             handleAddItem={() => cartAddItem(item)} 
-                             handleRemoveItem={() => cartRemoveItem(item)} /> 
+        
       </CardContent>
     </Card>
   );
