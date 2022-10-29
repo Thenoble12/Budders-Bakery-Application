@@ -1,4 +1,6 @@
 class ProductSerializer < ActiveModel::Serializer
+  include ActionView::Helpers::NumberHelper
+
   attributes :id, :name, :price, :vegan, :product_type, :description, :image_url
 
   def show
@@ -11,4 +13,8 @@ class ProductSerializer < ActiveModel::Serializer
       self.image_url
   end
   
+  def price
+      number_to_currency(self.object.price)
+  end
+
 end

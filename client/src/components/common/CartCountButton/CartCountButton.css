@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    position: flex;
     top: .89rem;
     cursor: pointer;
     right: 5rem;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -22,13 +22,29 @@ import CartCountButton from '../common/CartCountButton/CartCountButton';
 
 
 function Navbar2({ onLogout, user }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate() 
+  
+  let menuItemIndex = user ? 1 : 0 
 
-  const pages = ['Menu', 'About', user ? `Welcome, ${user.first_name}` : 'Register'];  
-  const settings = [user ? 'Account' : null, user ? 'Logout' : 'Login'];
+  let userMenuItemArr =  ["Register", user ? `Welcome, ${user.first_name}` : null]
+  let accountMenuItemArr = ['Account', null]
+  let logMenuItemArr = ['Logout', 'Login']  
 
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);  
+  const [logMenuItem, setLogMenuItem] = useState(logMenuItemArr[menuItemIndex[0]])
+  const [userMenuItem, setUserMenuItem] = useState(logMenuItemArr[menuItemIndex[0]])
+  const [accountMenuItem, setAccountMenuItem] = useState(accountMenuItemArr[menuItemIndex[0]])
+
+  
+  const pages = ['Menu', 'About', userMenuItem];  
+  const settings = [accountMenuItem, logMenuItem];  
+
+  useEffect(()=>{
+    setLogMenuItem(logMenuItemArr[menuItemIndex])
+    setUserMenuItem(userMenuItemArr[menuItemIndex])
+    setAccountMenuItem(accountMenuItemArr[menuItemIndex])
+  },[user])
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -168,7 +184,9 @@ function Navbar2({ onLogout, user }) {
               </Button>
             ))}
           </Box>
-
+          <Box sx={{ flexGrow: 0.03 }} >
+            <CartCountButton />  
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -200,9 +218,7 @@ function Navbar2({ onLogout, user }) {
               ))}
             </Menu>
           </Box>
-          <Box>
-            <CartCountButton />  
-          </Box>
+          
         </Toolbar>
       </Container>
     </AppBar>
