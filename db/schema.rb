@@ -72,6 +72,12 @@ ActiveRecord::Schema.define(version: 2022_10_13_194205) do
     t.integer "product_id"
     t.integer "user_id"
     t.integer "quantity"
+    t.string "name"
+    t.float "price"
+    t.boolean "vegan"
+    t.string "product_type"
+    t.text "description"
+    t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

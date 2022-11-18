@@ -36,13 +36,21 @@ function MenuItem2({ item, cartCount, cartList, cartAddItem, cartRemoveItem, pro
   const { id, name, price, vegan, description, image_url } = item;
 
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);  
+    
+  const handleToggle = (e) => {
+     setOpen(!open)
+  }
 
   return (
     <Card sx={{ minHeight: '250px', width: 210 }}
-          onClick={handleOpen}>
-            <MenuModal item={item} open={open} handleClose={handleClose} cartCount={cartCount} cartList={cartList} cartAddItem={cartAddItem} cartRemoveItem={cartRemoveItem}  />
+          onClick={()=> !open ? handleToggle() : null}>
+            <MenuModal item={item} 
+                       open={open} 
+                       toggle={handleToggle} 
+                       cartCount={cartCount} 
+                       cartList={cartList} 
+                       cartAddItem={cartAddItem} 
+                       cartRemoveItem={cartRemoveItem}  />
       <CardCover>
         <img
           src={image_url}

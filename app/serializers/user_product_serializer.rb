@@ -1,11 +1,8 @@
 class UserProductSerializer < ActiveModel::Serializer
-  attributes :id, :product_id, :user_id, :quantity
+  attributes :id, :user_id, :user_cart
 
   def show
-    self.id
-    self.product_id
-    self.user_id
-    self.quantity
+    self.user_cart
   end  
 
 end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # Leave this here to help deploy your app later!
 
   get "/me", to: "users#show"
+  post "/update_cart", to: "user_products#post"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   

@@ -4,7 +4,7 @@ class CreateUserProducts < ActiveRecord::Migration[6.1]
       # t.integer :user_product_id
       t.integer :product_id
       t.integer :user_id
-      t.integer :quantity
+      t.json :user_cart
 
       t.timestamps
     end

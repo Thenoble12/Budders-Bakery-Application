@@ -52,7 +52,7 @@ function MenuItem({ item, cartCount, cartList, cartAddItem, cartRemoveItem, prod
         <button>Details</button>
       </div>
       <div className="item-foot_desc">
-        <span className="foot_desc-price">${price}</span>
+        <span className="foot_desc-price">{price}</span>
         <AddRemoveItemButton quantity={handleItemQuantity()} 
                              handleAddItem={() => cartAddItem(item)} 
                              handleRemoveItem={() => cartRemoveItem(item)} />                                     

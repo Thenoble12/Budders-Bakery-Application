@@ -19,20 +19,10 @@ import {
   selectCartItems,
   selectCartItemsCount,
 } from "../../../redux/cart/cart.selector";
-import AspectRatio from '@mui/joy/AspectRatio';
-import Link from '@mui/joy/Link';
-import Card from '@mui/joy/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLongArrowLeft, faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import Chip from '@mui/joy/Chip';
 import AddRemoveItemButton from "../AddRemoveItemButton/AddRemoveItemButton";
 
 import "./MenuItem.css";
 import { Unstable_Grid2 as Grid } from '@mui/material';
-import { useNavigate } from 'react-router';
 
 
 
@@ -41,15 +31,14 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,    
+    width: 1200,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
   };
 
-function MenuModal({ item, open, toggle, cartCount, cartList, cartAddItem, cartRemoveItem }) {
-  const navigate = useNavigate(); 
+function MenuModal2({ item, open, handleClose, cartCount, cartList, cartAddItem, cartRemoveItem }) {
    
   const { id, name, price, vegan, description, image_url } = item;
 
@@ -64,20 +53,12 @@ function MenuModal({ item, open, toggle, cartCount, cartList, cartAddItem, cartR
     }
     return quantity;
   };
-  const handleClose = (e, reason) => {
-    // if (reason && reason == "backdropClick") 
-    //   return;
-    // e.stopImmediatePropagation()
-    
-    toggle(e)
-  }
 
   return (
     <div >
        <Transition in={open} timeout={400}>
         {(state) => (
           <Modal
-            
             keepMounted
             open={open}
             onClose={handleClose}
@@ -98,53 +79,52 @@ function MenuModal({ item, open, toggle, cartCount, cartList, cartAddItem, cartR
               visibility: state === 'exited' ? 'hidden' : 'visible',
             }}
           >
-            <Box sx={style}>
       {/* <Modal className='main'
         sx={{ minHeight: '10px', width: 10 }}
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
-
-
         >    */}
-        <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="140"
-        image={image_url}
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {name} {price}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {description}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Grid container spacing={7}>
-          <Grid  xs={4}>   
-            <button className='modal_back_button' onClick={()=>handleClose()}>                    
-              <FontAwesomeIcon icon={faLongArrowLeft} /> Back
-            </button>
-         </Grid>
-         <Grid  xs={4}>
-        <AddRemoveItemButton className="add-remove-button"
+        <ModalDialog
+              aria-labelledby="fade-modal-dialog-title"
+              aria-describedby="fade-modal-dialog-description"
+              sx={{
+                opacity: 0,
+                transition: `opacity 300ms`,
+                ...{
+                  entering: { opacity: 1 },
+                  entered: { opacity: 1 },
+                }[state],
+              }}
+            >
+        
+        <Box sx={style}>
+          <Grid container spacing={3}>     
+            <Grid xs={6}>
+                <img className='modal_image' src={image_url} /> 
+            </Grid>     
+            <Grid xs={6}>  
+                <Grid>   
+                  <Typography id="modal-modal-title" variant="h4" component="h6">
+                    {name}
+                  </Typography>
+                </Grid>
+                <Grid>
+                  <Typography id="modal-modal-description" sx={{ mt: 3 }}>
+                    Mixings: {description}
+                  </Typography>   
+                </Grid>
+                <Grid>
+                  <AddRemoveItemButton className="add-remove-button"
                                     quantity={handleItemQuantity()} 
                                     handleAddItem={() => cartAddItem(item)} 
                                     handleRemoveItem={() => cartRemoveItem(item)} /> 
-        </Grid> 
-        <Grid  xs={4}>   
-          <button className='modal_checkout_button' onClick={()=>navigate('/cart')}>      
-             Checkout <FontAwesomeIcon icon={faCartShopping} />
-          </button>
-         </Grid>                                 
-        </Grid>                                    
-      </CardActions>
-    </Card>
-    </Box>
+                 </Grid>                                             
+            </Grid>
+          </Grid>   
+        </Box>    
+        </ModalDialog>    
       </Modal> 
       )}
       </Transition>
@@ -165,4 +145,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps) (MenuModal);
+export default connect(mapStateToProps, mapDispatchToProps) (MenuModal2);

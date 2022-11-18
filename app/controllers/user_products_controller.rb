@@ -5,17 +5,17 @@ class UserProductsController < ApplicationController
     end
 
     def show
-        user_product = UserProduct.find(params[:id])
+        user_product = UserProduct.find(params[:user_id])
         render json: user_product, serializer: UserProductSerializer
     end
 
     
-    def create
+    def create. 
         user_product = UserProduct.create(user_product_params)
         render json: user_product, status: :created        
     end
 
-
+4
     def update
         user_product = UserProduct.find_by(id: params[:id])
 
@@ -42,6 +42,6 @@ class UserProductsController < ApplicationController
     private
 
     def user_product_params
-        params.permit(:product_id, :user_id, :quantity)
+        params.permit(:product_id, :user_id, :user_cart)
     end
 end

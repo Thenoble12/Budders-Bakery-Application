@@ -20,7 +20,7 @@ function ProductCard({ itemData }){
             className="product-image"
           />
           <p className="product-name">{name}</p>
-          <p className="product-price">${price}</p>
+          <p className="product-price">{price}</p>
           <p className='product-info'>{description}</p>
         </div>
         <p className='product-info'>{description}</p>

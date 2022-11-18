@@ -9,6 +9,7 @@
     font-size: 0.6rem;
     background: #000;
     color: #fff;
+    transform: scale(1.5, 1.5);
   }
   .btnAddRemove-positive,
   .btnAddRemove-negative {
